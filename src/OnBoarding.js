@@ -70,8 +70,8 @@ OnBoarding.navigationOptions = () => {
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: "NotoSerif-Bold",
-    fontSize: 30,
+    fontFamily: "Montserrat-SemiBold",
+    fontSize: 25,
     alignItems: "center",
     justifyContent: "center",
     color: "#FF0015",

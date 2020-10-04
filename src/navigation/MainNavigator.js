@@ -11,11 +11,13 @@ import SignUp from "../screens/AuthScreens/SignupComponent";
 import OnBoarding from "../OnBoarding";
 import LoadingScreen from "../screens/AuthScreens/LoadingScreen";
 import HomeScreen from "../screens/AuthScreens/HomeScreen";
+import Product from "../screens/AppScreens/Product";
 
 import Profile from "../screens/AppScreens/ProfileScreen";
 import Order from "../screens/AppScreens/OrderScreen";
 import Locations from "../screens/AppScreens/LocationScreen";
 import Icon from "react-native-vector-icons/Ionicons";
+import Entypo from "react-native-vector-icons/Entypo";
 
 import { firebaseConfig } from "../../config";
 
@@ -37,6 +39,7 @@ const navigator = createStackNavigator(
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
+  Product: Product,
 });
 
 const ProfileStack = createStackNavigator({
@@ -68,7 +71,9 @@ const tabBarConfig = {
     navigationOptions: {
       title: "Addresses",
       tabBarIcon: (tabInfo) => {
-        return <Icon name="ios-pin" size={25} color={tabInfo.tintColor} />;
+        return (
+          <Entypo name="location-pin" size={25} color={tabInfo.tintColor} />
+        );
       },
       tabBarColor: "white",
     },

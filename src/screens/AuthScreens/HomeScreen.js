@@ -5,15 +5,17 @@ import {
   StyleSheet,
   LayoutAnimation,
   Dimensions,
-  TextInput,
-  Button,
-  Alert,
-  Image,
+  FlatList,
 } from "react-native";
 import * as firebase from "firebase";
 import { ScrollView } from "react-native-gesture-handler";
 
+import { PRODUCT } from "../../data/dummy-data";
 import HeaderSwiperCard from "../../components/SwiperCard";
+import SecondSwiperCard from "../../components/SecondSwiperCard";
+import ProductGrid from "../../components/ProductGrid";
+import Highlights from "../../components/Highlights";
+import UserStoriesGrid from "../../components/UserStoriesGrid";
 
 const { width } = Dimensions.get("window");
 
@@ -32,16 +34,69 @@ const HomeScreen = (props) => {
 
   LayoutAnimation.easeInEaseOut();
 
+  const renderGridItem = (itemData) => {
+    return (
+      <ProductGrid
+        title={itemData.item.title}
+        color={itemData.item.color}
+        onSelect={() => {
+          props.navigation.navigate({
+            routeName: "Product",
+            params: { prodId: itemData.item.id },
+          });
+        }}
+      />
+    );
+  };
+
   return (
-    <ScrollView>
-      <View style={styles.mainContainer}>
-        <View style={styles.container}>
-          <Text style={styles.welcomeText}>Welcome</Text>
+    <ScrollView nestedScrollEnabled={true}>
+      {/* ////////////////////////////////////// Welcome {Name} ////////////////////////// */}
+      <View style={{ flex: 1 }}>
+        <View style={styles.mainContainer}>
+          <View style={{ flexDirection: "row" }}>
+            <View style={styles.container}>
+              <Text style={styles.welcomeText}>Welcome</Text>
+            </View>
+            <View>
+              <Text style={styles.nameText}>{Name}</Text>
+            </View>
+          </View>
+          {/* ///////////////////////////Top Swiper/////////////////////////////////////// */}
+          <View style={styles.wrapper}>
+            <HeaderSwiperCard />
+          </View>
         </View>
-        <View style={styles.wrapper}>
-          <HeaderSwiperCard />
+        {/* //////////////////// Products Container////////////////////////// */}
+        <View style={styles.prodContainer}>
+          <View style={styles.headTextContainer}>
+            <Text style={styles.headText}>Which service would you like ?</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <FlatList
+              nestedScrollEnabled={true}
+              numColumns={2}
+              data={PRODUCT}
+              renderItem={renderGridItem}
+              keyExtractor={(item, index) => item.id}
+            />
+          </View>
         </View>
       </View>
+      {/* //////////////////////Offers Card//////////////////////////////////////// */}
+      <View style={styles.wrapper}>
+        <SecondSwiperCard />
+      </View>
+      {/* //////////////////////////////////////Highlight Card //////////////////////////////////////////// */}
+      <View>
+        <Highlights />
+      </View>
+
+      {/* ///////////////////////////////////////// User Card ///////////////////////// */}
+
+      <UserStoriesGrid />
+
+      <View style={{ height: 50, backgroundColor: "white" }} />
     </ScrollView>
   );
 };
@@ -54,10 +109,10 @@ HomeScreen.navigationOptions = (navData) => {
 };
 
 const styles = StyleSheet.create({
-  mainContainer: { backgroundColor: "white", height: "95%" },
+  mainContainer: { backgroundColor: "white", height: 300 },
+  prodContainer: { backgroundColor: "white" },
 
   wrapper: {
-    height: "35%",
     flex: 1,
   },
 
@@ -67,18 +122,21 @@ const styles = StyleSheet.create({
     color: "#000",
   },
 
-  marTop: {
-    marginTop: 15,
-  },
   container: {
-    flex: 1,
     marginLeft: 20,
     marginTop: 5,
   },
   welcomeText: {
-    fontFamily: "NotoSerif-Bold",
-    fontSize: 20,
-    color: "#FF0015",
+    fontFamily: "Montserrat-Regular",
+    fontSize: 17,
+    color: "#000",
+  },
+  nameText: {
+    fontSize: 15,
+    marginLeft: 5,
+    marginVertical: 7,
+    fontFamily: "Montserrat-Regular",
+    color: "#000",
   },
   image: {
     width: width,
@@ -86,6 +144,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     resizeMode: "stretch",
   },
+
+  headText: {
+    fontFamily: "Montserrat-Regular",
+    fontSize: 17,
+    color: "#000",
+  },
+  headTextContainer: { marginHorizontal: 20 },
 });
 
 export default HomeScreen;

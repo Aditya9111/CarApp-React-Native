@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Button, Alert, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  Alert,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import * as firebase from "firebase";
-import { Shapes } from "react-native-background-shapes";
+import Icon from "react-native-vector-icons/Ionicons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const Profile = (props) => {
-  // state = {
-  //   email: "",
-  //   Name: "",
-  // };
-
   const [email, setEmail] = useState("");
   const [Name, setName] = useState("");
 
@@ -16,7 +21,7 @@ const Profile = (props) => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setEmail(user.email);
-        console.log(user);
+        setName(user.displayName);
       } else {
         props.navigation.navigate("OnBoarding");
       }
@@ -41,28 +46,116 @@ const Profile = (props) => {
   };
 
   return (
-    <View>
-      <View style={styles.marTop}>
-        <Image
-          source={require("../../../assets/profile.png")}
-          style={styles.image}
-        />
-      </View>
-      <View style={styles.emailContainer}>
-        <Text style={styles.emailText}>{email}</Text>
+    <ScrollView>
+      <View style={styles.profileContainer}>
+        <View style={styles.icon}>
+          <Image
+            source={require("../../../assets/profile.png")}
+            style={styles.image}
+          />
+        </View>
+        <View style={styles.emailContainer}>
+          <Text style={styles.emailText}>{Name}</Text>
+        </View>
+        <View style={styles.emailContainer}>
+          <Text style={styles.emailText}>{email}</Text>
+        </View>
       </View>
 
-      <View
-        style={{
-          marginRight: 8,
-          marginTop: 10,
-          paddingLeft: 60,
-          paddingRight: 60,
-        }}
-      >
-        <Button title="Log Out" color="#FF0015" onPress={userSignout} />
+      <View style={styles.screenContainer}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate("Order")}
+          style={styles.section}
+        >
+          <Icon name="md-cart" size={25} style={{ color: "#ff0015" }} />
+          <Text style={styles.sectionText}>Orders</Text>
+          <MaterialIcons
+            name="keyboard-arrow-right"
+            size={25}
+            style={{ color: "#ff0015" }}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.section} onPress={() => {}}>
+          <Icon name="md-gift" size={25} style={{ color: "#ff0015" }} />
+          <Text style={styles.sectionText}>Refer and Earn</Text>
+          <MaterialIcons
+            name="keyboard-arrow-right"
+            size={25}
+            style={{ color: "#ff0015" }}
+          />
+        </TouchableOpacity>
+
+        <View>
+          <TouchableOpacity style={styles.section} onPress={() => {}}>
+            <Icon name="md-list" size={25} style={{ color: "#ff0015" }} />
+            <Text style={styles.sectionText}>Terms and Conditions</Text>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={25}
+              style={{ color: "#ff0015" }}
+            />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <TouchableOpacity style={styles.section} onPress={() => {}}>
+            <MaterialIcons
+              name="headset-mic"
+              size={25}
+              style={{ color: "#ff0015" }}
+            />
+            <Text style={styles.sectionText}>Contact Us</Text>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={25}
+              style={{ color: "#ff0015" }}
+            />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <TouchableOpacity style={styles.section} onPress={() => {}}>
+            <MaterialIcons
+              name="feedback"
+              size={25}
+              style={{ color: "#ff0015" }}
+            />
+            <Text style={styles.sectionText}>Give feedback</Text>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={25}
+              style={{ color: "#ff0015" }}
+            />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <TouchableOpacity style={styles.section} onPress={() => {}}>
+            <MaterialIcons
+              name="description"
+              size={25}
+              style={{ color: "#ff0015" }}
+            />
+            <Text style={styles.sectionText}>About</Text>
+            <MaterialIcons
+              name="keyboard-arrow-right"
+              size={25}
+              style={{ color: "#ff0015" }}
+            />
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity style={styles.signOut} onPress={userSignout}>
+          <Icon
+            name="md-log-out"
+            size={25}
+            style={{ color: "#ff0015", marginRight: 20 }}
+          />
+          <Text style={styles.sectionText}>Sign Out</Text>
+        </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -75,38 +168,65 @@ Profile.navigationOptions = (navData) => {
 };
 
 const styles = StyleSheet.create({
-  emailText: { fontSize: 20 },
-  emailContainer: {
-    alignItems: "center",
-    marginTop: 25,
-    marginBottom: 30,
-  },
-  marTop: {
-    backgroundColor: "#FF0015",
-    width: 100,
-    height: 100,
-    marginLeft: 150,
-    padding: 10,
-    borderRadius: 50,
+  icon: {
+    marginTop: "10%",
     justifyContent: "center",
-    marginTop: 50,
-  },
-  image: {
-    width: 80,
-    height: 55,
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginTop: 10,
-    marginBottom: 10,
-    color: "#FF0015",
-  },
-  headerBox: {
     alignItems: "center",
+  },
 
-    borderBottomColor: "#FF0015",
+  profileContainer: {
+    height: 240,
+    backgroundColor: "white",
+    borderBottomRightRadius: 30,
+    borderBottomLeftRadius: 30,
+    elevation: 3,
+    marginBottom: 10,
+  },
+
+  emailText: {
+    fontSize: 20,
+    marginTop: 15,
+    color: "#000",
+    fontFamily: "Montserrat-Regular",
+  },
+  emailContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  image: {
+    width: 90,
+    height: 90,
+  },
+
+  screenContainer: {
+    marginBottom: 10,
+    marginHorizontal: 15,
+    borderRadius: 20,
+    backgroundColor: "white",
+    height: 440,
+    elevation: 3,
+  },
+  section: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 15,
+    paddingVertical: 4,
     borderBottomWidth: 1,
+    borderBottomColor: "#000",
+  },
+
+  signOut: {
+    flexDirection: "row",
+
+    marginHorizontal: 15,
+    paddingVertical: 5,
+  },
+
+  sectionText: {
+    color: "#000",
+    fontSize: 15,
+    fontFamily: "Montserrat-Regular",
   },
 });
 

@@ -5,7 +5,6 @@ import Swiper from "react-native-swiper";
 const HeaderSwiperCard = (props) => {
   return (
     <Swiper
-      autoplay={true}
       style={styles.swiper}
       dot={<View style={styles.dot} />}
       activeDot={<View style={styles.activeDot} />}
