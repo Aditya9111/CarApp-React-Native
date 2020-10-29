@@ -1,8 +1,12 @@
 class Detail {
-  constructor(discription, image, price) {
+  constructor(id, discription, longDiscription, image, HATCHBACK, SEDAN, SUV) {
+    this.id = id;
     this.discription = discription;
+    this.longDiscription = longDiscription;
     this.image = image;
-    this.price = price;
+    this.HATCHBACK = HATCHBACK;
+    this.SEDAN = SEDAN;
+    this.SUV = SUV;
   }
 }
 

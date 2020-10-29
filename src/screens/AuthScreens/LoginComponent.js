@@ -141,14 +141,26 @@ export default class LogIn extends React.Component {
         </TouchableOpacity>
 
         <View style={styles.signup}>
-          <Text style={[styles.textSignup, { color: "gray" }]}>
+          <Text
+            style={[
+              styles.textSignup,
+              { color: "gray", fontFamily: "Montserrat-Regular" },
+            ]}
+          >
             Don't have an account?
           </Text>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("SignUpScreen")}
           >
             <Text
-              style={[styles.textSignup, { color: "#FF0015", marginLeft: 3 }]}
+              style={[
+                styles.textSignup,
+                {
+                  color: "#FF0015",
+                  marginLeft: 3,
+                  fontFamily: "Montserrat-Regular",
+                },
+              ]}
               onPress={() => this.props.navigation.navigate("SignUp")}
             >
               Sign Up
@@ -169,11 +181,13 @@ var styles = StyleSheet.create({
     paddingVertical: 100,
   },
   title: {
+    fontFamily: "Montserrat-SemiBold",
     color: "#FF0015",
     fontWeight: "bold",
     fontSize: 30,
   },
   text: {
+    fontFamily: "Montserrat-Regular",
     color: "gray",
   },
   section: {
@@ -190,14 +204,15 @@ var styles = StyleSheet.create({
     paddingLeft: 10,
   },
   forgot: {
+    fontFamily: "Montserrat-Regular",
     textAlign: "right",
     marginTop: 15,
     color: "#FF0015",
   },
   textLogin: {
+    fontFamily: "Montserrat-SemiBold",
     color: "white",
     fontSize: 15,
-    fontWeight: "bold",
   },
   login: {
     width: "100%",

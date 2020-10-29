@@ -1,22 +1,31 @@
 import React from "react";
-import { View, Text } from "react-native";
-// import { enableScreens } from "react-native-screens";
-// import { createStore, combineReducers } from "redux";
-// import { Provider } from "react-redux";
+import { LogBox } from "react-native";
+import { enableScreens } from "react-native-screens";
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
 
 import SwitchNavigator from "./src/navigation/MainNavigator";
-// import MealReducer from "./redux/store/reducers/meal";
+import ProdReducer from "./redux/store/reducers/prodReducer";
 
-// enableScreens();
+enableScreens();
 
-// const rootReducer = combineReducers({
-//   meals: MealReducer,
-// });
+const rootReducer = combineReducers({
+  products: ProdReducer,
+});
 
-// const store = createStore(rootReducer);
+const store = createStore(rootReducer);
 
 const App = () => {
-  return <SwitchNavigator />;
+  LogBox.ignoreLogs([
+    "VirtualizedLists should never be nested",
+    "Deprecation in ",
+  ]);
+
+  return (
+    <Provider store={store}>
+      <SwitchNavigator />
+    </Provider>
+  );
 };
 
 export default App;

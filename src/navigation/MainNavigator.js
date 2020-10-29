@@ -12,6 +12,7 @@ import OnBoarding from "../OnBoarding";
 import LoadingScreen from "../screens/AuthScreens/LoadingScreen";
 import HomeScreen from "../screens/AuthScreens/HomeScreen";
 import Product from "../screens/AppScreens/Product";
+import CartOrder from "../screens/AppScreens/CartOrder";
 
 import Profile from "../screens/AppScreens/ProfileScreen";
 import Order from "../screens/AppScreens/OrderScreen";
@@ -40,6 +41,7 @@ const navigator = createStackNavigator(
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
   Product: Product,
+  CartOrder: CartOrder,
 });
 
 const ProfileStack = createStackNavigator({

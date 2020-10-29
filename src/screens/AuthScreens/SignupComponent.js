@@ -200,7 +200,13 @@ export default class SignUp extends React.Component {
             onPress={() => this.props.navigation.navigate("LoginScreen")}
           >
             <Text
-              style={[styles.textSignup, { color: "#FF0015", marginLeft: 3 }]}
+              style={[
+                styles.textSignup,
+                {
+                  color: "#FF0015",
+                  marginLeft: 3,
+                },
+              ]}
               onPress={() => this.props.navigation.navigate("SignIn")}
             >
               Login
@@ -221,11 +227,13 @@ var styles = StyleSheet.create({
     paddingVertical: 100,
   },
   title: {
+    fontFamily: "Montserrat-SemiBold",
     color: "#FF0015",
     fontWeight: "bold",
     fontSize: 30,
   },
   text: {
+    fontFamily: "Montserrat-Regular",
     color: "gray",
   },
   section: {
@@ -249,7 +257,7 @@ var styles = StyleSheet.create({
   textLogin: {
     color: "white",
     fontSize: 15,
-    fontWeight: "bold",
+    fontFamily: "Montserrat-SemiBold",
   },
   login: {
     width: "100%",
@@ -268,6 +276,7 @@ var styles = StyleSheet.create({
     justifyContent: "center",
   },
   textSignup: {
+    fontFamily: "Montserrat-Regular",
     textAlign: "center",
   },
 });

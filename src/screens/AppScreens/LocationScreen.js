@@ -1,27 +1,23 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 const Locations = () => {
   return (
     <View>
-      <Text>Location Screen</Text>
+      <Image
+        source={require("../../../assets/NoLocation.png")}
+        style={styles.noOrder}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginTop: 10,
-    marginBottom: 10,
-    color: "#FF0015",
-  },
-  headerBox: {
-    alignItems: "center",
-
-    borderBottomColor: "#FF0015",
-    borderBottomWidth: 1,
+  noOrder: {
+    width: width,
+    height: height,
   },
 });
 

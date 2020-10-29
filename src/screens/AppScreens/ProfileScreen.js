@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     margin: 15,
     paddingVertical: 4,
     borderBottomWidth: 1,
-    borderBottomColor: "#000",
+    borderBottomColor: "#ccc",
   },
 
   signOut: {

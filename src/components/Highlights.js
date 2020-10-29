@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     color: "#000",
   },
   headTextContainer: {
+    marginTop: 12,
     marginLeft: 30,
   },
   circle: {

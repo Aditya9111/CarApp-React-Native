@@ -10,15 +10,9 @@ import {
   Alert,
 } from "react-native";
 import Swiper from "react-native-swiper";
-import { useNetInfo } from "@react-native-community/netinfo";
 
 const { width } = Dimensions.get("window");
 export default function OnBoarding({ navigation }) {
-  const netInfo = useNetInfo();
-  if (netInfo.isConnected.toString() === false) {
-    Alert.alert("Please connect to internet");
-  }
-
   return (
     <View style={styles.container}>
       <Swiper
@@ -127,7 +121,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   signup: {
-    fontFamily: "Helvetica",
+    fontFamily: "Montserrat-SemiBold",
     fontSize: 20,
     color: "#fff",
     fontWeight: "bold",
@@ -142,7 +136,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   login: {
-    fontFamily: "Helvetica",
+    fontFamily: "Montserrat-SemiBold",
     fontSize: 20,
     color: "#FF0015",
     fontWeight: "bold",
